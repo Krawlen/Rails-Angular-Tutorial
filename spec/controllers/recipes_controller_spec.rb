@@ -1,18 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe RecipesController, type: :controller do
-
+  render_views
   describe "index" do
     before do
-      Recipe.create!(name: 'Baked Potato w/ Cheese')
-      Recipe.create!(name: 'Garlic Mashed Potatoes')
-      Recipe.create!(name: 'Potatoes Au Gratin')
-      Recipe.create!(name: 'Baked Brussel Sprouts')
+      create(:recipe, name: 'Baked Potato w/ Cheese')
+      create(:recipe, name: 'Garlic Mashed Potatoes')
+      create(:recipe, name: 'Potatoes Au Gratin')
+      create(:recipe, name: 'Baked Brussel Sprouts')
 
       xhr :get, :index, format: :json, keywords: keywords
     end
 
-    subject(:results) { JSON.parse(response.body) }
+    subject(:results) { JSON.parse(response.body)}
 
     def extract_name
       ->(object) { object["name"] }
@@ -31,6 +31,12 @@ RSpec.describe RecipesController, type: :controller do
       end
       it "should include 'Baked Brussel Sprouts'" do
         expect(results.map(&extract_name)).to include('Baked Brussel Sprouts')
+      end
+    end
+
+    context 'when there are no search parameters' do
+      it 'returns all the recipes' do
+        expect(results.size).to eq(4)
       end
     end
 

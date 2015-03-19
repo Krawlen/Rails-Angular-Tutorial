@@ -28,14 +28,13 @@ ActiveRecord::Migration.maintain_test_schema!
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.infer_spec_type_from_file_location!
-
+  config.use_transactional_fixtures = true
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
 
   config.before(:suite) do
     DatabaseCleaner.clean_with :truncation
-    DatabaseCleaner.clean_with :transaction
   end
 
   config.after(:each) do
