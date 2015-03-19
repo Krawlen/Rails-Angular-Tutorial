@@ -35,6 +35,7 @@ RSpec.describe RecipesController, type: :controller do
     end
 
     context 'when there are no search parameters' do
+      let(:keywords) { '' }
       it 'returns all the recipes' do
         expect(results.size).to eq(4)
       end
