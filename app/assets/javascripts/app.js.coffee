@@ -1,5 +1,5 @@
-angular.module('controllers', [])
 angular.module('services', [])
+angular.module('controllers', ['services'])
 
 receta = angular.module('receta', [
   'templates',

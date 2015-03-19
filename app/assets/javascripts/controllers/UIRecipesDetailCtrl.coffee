@@ -31,5 +31,4 @@ angular.module('controllers').controller("UIRecipesDetailCtrl",
       $scope.delete = ->
         $scope.recipe.$delete()
         $state.go("recipes.list")
-        console.log('redirect')
   ])
