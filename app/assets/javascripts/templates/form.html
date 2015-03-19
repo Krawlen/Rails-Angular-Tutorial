@@ -10,6 +10,7 @@
                 class="col-md-2 control-label col-md-offset-2">
             Name
         </label>
+
         <div class="col-md-5">
             <input type="text" name="name" class="form-control" placeholder="e.g. Baked Alaska" ng-model="recipe.name">
         </div>
@@ -20,17 +21,20 @@
                 class="col-md-2 control-label col-md-offset-2">
             Instructions
         </label>
+
         <div class="col-md-5">
-      <textarea name="instructions" class="form-control" ng-model='recipe.instructions' placeholder="e.g. Flambé for 20 seconds">
+      <textarea name="instructions" class="form-control" ng-model='recipe.instructions'
+                placeholder="e.g. Flambé for 20 seconds">
       </textarea>
         </div>
     </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-3">
-            <button class="btn btn-default" ng-click="cancel()"> Cancel</button>
+            <a ui-sref="recipes.list" class="btn btn-default"> Cancel</a>
         </div>
         <div class="col-md-4 text-right">
-            <button class="btn btn-primary" ng-click="save()"> Save </button>
+            <button class="btn btn-primary" ng-click="save()"> Save</button>
         </div>
     </div>
-    </section>
+</form>
+</section>

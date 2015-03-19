@@ -1,28 +1,36 @@
 receta = angular.module('receta', [
   'templates',
-  'ngRoute',
+  'ui.router',
   'ngResource',
   'controllers',
   'angular-flash.service',
   'angular-flash.flash-alert-directive'
 ])
 
-receta.config(['$routeProvider', 'flashProvider',
-  ($routeProvider, flashProvider)->
-    $routeProvider
-    .when('/',
-      templateUrl: "index.html"
+receta.config(['$stateProvider', '$urlRouterProvider', 'flashProvider',
+  ($stateProvider, $urlRouterProvider, flashProvider)->
+    $urlRouterProvider.otherwise '/recipes'
+
+    $stateProvider.state('recipes',
+      url: '/recipes'
+      abstract: true
+      template: '<ui-view/>')
+    .state('recipes.list',
+      url: '/?keywords'
+      templateUrl: 'index.html'
       controller: 'RecipesListController'
-    ).when('/recipes/new',
-      templateUrl: "form.html"
+    ).state('recipes.detail',
+      url: '/{recipeId:int}'
+      templateUrl: 'show.html',
+      controller: 'RecipeDetailController')
+    .state 'recipes.new',
+      url: '/new'
+      templateUrl: 'form.html'
       controller: 'RecipeDetailController'
-    ).when('/recipes/:recipeId',
-      templateUrl: "show.html"
+    .state 'recipes.edit',
+      url: '/:recipeId/edit'
+      templateUrl: 'form.html'
       controller: 'RecipeDetailController'
-    ).when('/recipes/:recipeId/edit',
-      templateUrl: "form.html"
-      controller: 'RecipeDetailController'
-    )
 
     flashProvider.errorClassnames.push("alert-danger")
     flashProvider.warnClassnames.push("alert-warning")
