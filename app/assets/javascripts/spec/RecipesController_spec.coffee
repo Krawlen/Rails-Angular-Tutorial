@@ -1,4 +1,4 @@
-describe "RecipesController", ->
+describe "RecipesListController", ->
   scope        = null
   ctrl         = null
   location     = null
@@ -26,7 +26,7 @@ describe "RecipesController", ->
           request = new RegExp("\/recipes.*")
         httpBackend.expectGET(request).respond(results)
 
-      ctrl = $controller('RecipesController',
+      ctrl = $controller('RecipesListController',
         $scope: scope
         $location: location)
     )
