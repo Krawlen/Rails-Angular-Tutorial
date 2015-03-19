@@ -6,4 +6,8 @@ class RecipesController < ApplicationController
                  Recipe.all
                end
   end
+
+  def index
+    @recipe = Recipe.find(params[:id])
+  end
 end
