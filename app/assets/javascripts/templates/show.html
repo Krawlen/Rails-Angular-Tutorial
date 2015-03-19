@@ -17,7 +17,7 @@
             </a>
         </div>
         <div class="col-md-9 text-right">
-            <button ng-click="edit()" class="btn btn-info"> Edit</button>
+            <a ui-sref="recipes.edit({recipeId: recipe.id})" class="btn btn-info"> Edit</a>
             <button ng-click="delete()" class="btn btn-danger"> Delete</button>
         </div>
     </section>

@@ -19,6 +19,7 @@
 //= require angular-flash/dist/angular-flash
 //= require angular-ui-router/release/angular-ui-router
 //= require app
+//= require_tree ./services
 //= require_tree ./controllers
 //= require_tree ./templates
 

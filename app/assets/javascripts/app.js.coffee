@@ -1,8 +1,12 @@
+angular.module('controllers', [])
+angular.module('services', [])
+
 receta = angular.module('receta', [
   'templates',
   'ui.router',
   'ngResource',
   'controllers',
+  'services',
   'angular-flash.service',
   'angular-flash.flash-alert-directive'
 ])
@@ -16,26 +20,24 @@ receta.config(['$stateProvider', '$urlRouterProvider', 'flashProvider',
       abstract: true
       template: '<ui-view/>')
     .state('recipes.list',
-      url: '/?keywords'
+      url: '?keywords'
       templateUrl: 'index.html'
-      controller: 'RecipesListController'
+      controller: 'UIRecipesListCtrl'
     ).state('recipes.detail',
       url: '/{recipeId:int}'
       templateUrl: 'show.html',
-      controller: 'RecipeDetailController')
+      controller: 'UIRecipesDetailCtrl')
     .state 'recipes.new',
       url: '/new'
       templateUrl: 'form.html'
-      controller: 'RecipeDetailController'
+      controller: 'UIRecipesDetailCtrl'
     .state 'recipes.edit',
       url: '/:recipeId/edit'
       templateUrl: 'form.html'
-      controller: 'RecipeDetailController'
+      controller: 'UIRecipesDetailCtrl'
 
     flashProvider.errorClassnames.push("alert-danger")
     flashProvider.warnClassnames.push("alert-warning")
     flashProvider.infoClassnames.push("alert-info")
     flashProvider.successClassnames.push("alert-success")
 ])
-
-controllers = angular.module('controllers', [])

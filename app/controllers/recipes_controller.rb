@@ -1,7 +1,6 @@
 class RecipesController < ApplicationController
 
   before_filter :recipe, only: [:destroy, :show, :update]
-  skip_before_filter :verify_authenticity_token
 
   def index
     @recipes = if params[:keywords]
